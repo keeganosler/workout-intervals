@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { NagivationService } from '../../../services/nagivation.service';
 
 @Component({
   selector: 'app-session-details-modal',
@@ -23,11 +24,15 @@ export class SessionDetailsModalComponent implements OnInit {
     }),
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public navigationService: NagivationService
+  ) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
     console.log(this.form.value);
+    this.navigationService.toggleAppState();
   }
 }
